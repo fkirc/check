@@ -238,12 +238,12 @@ static void srunner_iterate_tcase_tfuns(SRunner * sr, TCase * tc)
     for(check_list_front(tfl); !check_list_at_end(tfl);
         check_list_advance(tfl))
     {
-        int i;
+        int i = 0;
 
         tfun = (TF *)check_list_val(tfl);
 
-        for(i = tfun->loop_start; i < tfun->loop_end; i++)
-        {
+        //for(i = tfun->loop_start; i < tfun->loop_end; i++) // iterations not used
+        //{
             log_test_start(sr, tc, tfun);
             switch (srunner_fork_status(sr))
             {
@@ -268,7 +268,7 @@ static void srunner_iterate_tcase_tfuns(SRunner * sr, TCase * tc)
                 srunner_add_failure(sr, tr);
                 log_test_end(sr, tr);
             }
-        }
+        //}
     }
 }
 
