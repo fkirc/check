@@ -85,9 +85,9 @@ CK_CPPSTART
 
 /* check version numbers */
 
-#define CHECK_MAJOR_VERSION (@CHECK_MAJOR_VERSION@)
-#define CHECK_MINOR_VERSION (@CHECK_MINOR_VERSION@)
-#define CHECK_MICRO_VERSION (@CHECK_MICRO_VERSION@)
+#define CHECK_MAJOR_VERSION (0)
+#define CHECK_MINOR_VERSION (0)
+#define CHECK_MICRO_VERSION (0)
 
 CK_DLL_EXP extern int CK_EXPORT check_major_version;
 CK_DLL_EXP extern int CK_EXPORT check_minor_version;
@@ -458,7 +458,7 @@ static void __testname ## _fn (int _i CK_ATTRIBUTE_UNUSED)
  * the function as noreturn causes gcc to make assumptions
  * which are not valid, as longjmp() is like a return.
  */
-#if @HAVE_FORK@
+#ifndef _MSC_VER
 CK_DLL_EXP void CK_EXPORT _ck_assert_failed(const char *file, int line,
                                             const char *expr,
                                             ...) CK_ATTRIBUTE_NORETURN;
@@ -1792,7 +1792,7 @@ enum print_output
                                      either "silent", "minimal", "normal",
                                      or "verbose". If the environment variable
                                      is not set, then CK_NORMAL will be used.*/
-#if @ENABLE_SUBUNIT@
+#ifndef MSC_VER
     CK_SUBUNIT,                 /**< Run as a subunit child process */
 #endif
     CK_LAST                     /**< Not a valid option */
